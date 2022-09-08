@@ -13,7 +13,8 @@ import styled from 'styled-components';
 
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 // import { addContact, deleteContact, filterContact } from 'redux/actions'; VANILA
-import { addContact, deleteContact, filterContact } from 'redux/slise';
+import { addContact, deleteContact } from 'redux/sliseContacts';
+import { filterContact } from 'redux/sliceFilter';
 import { getFilter, visibleContacts } from '../redux/selectors';
 //  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
 //       { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
