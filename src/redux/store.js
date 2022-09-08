@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { contactsSlise, filterSlise } from './sliseContacts';
+import { contactsSlise } from './sliseContacts';
+import { filterSlise } from './sliceFilter';
 
 import {
   persistStore,
