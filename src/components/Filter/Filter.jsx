@@ -1,6 +1,6 @@
 import React from 'react';
 import useLang from 'hooks/useLang';
-import contentText from '../Lang/contentText.json';
+import contentText from '../../Lang/contentText.json';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 

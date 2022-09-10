@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { langContext } from '../Lang/LangContext';
-import contentText from '../Lang/contentText.json';
+import { langContext } from '../../Lang/LangContext';
+import contentText from '../../Lang/contentText.json';
 // import { useForm } from 'react-hook-form';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import PropTypes from 'prop-types';

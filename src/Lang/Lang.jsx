@@ -1,5 +1,5 @@
 import React from 'react';
-import useLang from '../../hooks/useLang';
+import useLang from '../hooks/useLang';
 import styled from 'styled-components';
 
 const Lang = () => {

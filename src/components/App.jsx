@@ -4,38 +4,46 @@ import Form from './Form';
 import ContactList from './ContactList';
 import Filter from './Filter';
 
-import Lang from './Lang';
+import Lang from '../Lang';
 import useLang from 'hooks/useLang';
-import contentText from './Lang/contentText.json';
+import contentText from '../Lang/contentText.json';
+import { useEffect } from 'react';
 
 import styled from 'styled-components';
-// import { nanoid } from 'nanoid';
+import { Loader } from '../components/Loader/Loader';
 
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-// import { addContact, deleteContact, filterContact } from 'redux/actions'; VANILA
-import { addContact, deleteContact } from 'redux/sliseContacts';
-import { filterContact } from 'redux/sliceFilter';
-import { getFilter, visibleContacts } from '../redux/selectors';
-//  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-//       { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-//       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-//       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+import {
+  addContact,
+  deleteContact,
+  fetchContacts,
+} from 'redux/contacts/operationsContacts';
+import { filterContact } from 'redux/filter/sliceFilter';
+import {
+  getFilter,
+  visibleContacts,
+  getLoaderStatus,
+} from '../redux/selectors';
 
 function App() {
   const filter = useSelector(getFilter);
   const contacts = useSelector(visibleContacts);
+  const isLoaderActive = useSelector(getLoaderStatus);
 
   const dispatch = useDispatch();
   const { lang } = useLang();
 
-  const onAddContact = (name, number) => {
-    const payload = { name, number };
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
+  const onAddContact = (name, phone) => {
+    const payload = { name, phone };
     const action = addContact(payload);
     dispatch(action);
   };
 
   const onDeleteContact = payload => {
-    console.log(payload);
     dispatch(deleteContact(payload));
   };
 
@@ -52,6 +60,7 @@ function App() {
       <Form onSubmit={onAddContact} contacts={contacts} />
       <Title>{contactsList}</Title>
       <Filter value={filter} onChange={onChangeFilter} />
+      {isLoaderActive && <Loader />}
       <ContactList contacts={contacts} onDeleteContact={onDeleteContact} />
     </Wrapper>
   );
